@@ -15,9 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from api.views import reminderAPI
+from api.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('reminder-api/',reminderAPI.as_view(),name="API"),
-    path("reminder-api/<int:pk>/",reminderAPI.as_view(),name="api"),
+    path("incomplete/",IncompleteReminder.as_view(),name="Incomplete Reminders"),
+    path("complete/",CompleteReminder.as_view(),name="Complete Reminders"),
+    path("post/reminder/",PostReminder.as_view(),name="Post Reminders"),
+    path("update/reminder/",UpdateReminder.as_view(),name="Update Reminders"),
+    path("delete/reminder<int:pk>",DeleteReminder.as_view(),name="Delete Reminder"),
 ]
