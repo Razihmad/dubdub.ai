@@ -15,7 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-
+from api.views import reminderAPI
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('reminder-api/',reminderAPI.as_view(),name="API"),
 ]
