@@ -19,4 +19,5 @@ from api.views import reminderAPI
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('reminder-api/',reminderAPI.as_view(),name="API"),
+    path("reminder-api/<int:pk>/",reminderAPI.as_view(),name="api"),
 ]

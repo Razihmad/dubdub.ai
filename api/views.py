@@ -8,6 +8,10 @@ from rest_framework import status
 
 class reminderAPI(APIView):
     def get(self,request,pk=None,format=None):
+        if(pk is not None):
+            rem = Reminders.objects.get(id=pk)
+            serializer = RemindersSerializer(rem)
+            return Response(serializer.data,status=status.HTTP_200_OK)
         reminders = Reminders.objects.all()
         serializer = RemindersSerializer(reminders,many=True)
         return Response(serializer.data,status=status.HTTP_200_OK)
@@ -40,9 +44,8 @@ class reminderAPI(APIView):
         return Response(res,status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self,request,pk=None,format=None):
-        id = request.data.get('id')
         try:
-            rem = Reminders.objects.get(pk=id)
+            rem = Reminders.objects.get(pk=pk)
             rem.delete()
             res = {"msg":"Deleted Successfully"}
             return Response(res,status=status.HTTP_200_OK)
