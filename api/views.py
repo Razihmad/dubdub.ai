@@ -83,9 +83,9 @@ class UpdateReminder(APIView):
     
     
     def put(self,request,pk=None,format=None):
-        id = request.data.get('id')
-        if(Reminders.objects.filter(pk=id).exists()):
-            reminder = Reminders.objects.get(pk=id)
+        # id = request.data.get('id')
+        if(Reminders.objects.filter(pk=pk).exists()):
+            reminder = Reminders.objects.get(pk=pk)
             deserializer = RemindersSerializer(reminder,data=request.data,partial=True)
             if(deserializer.is_valid()):
                 deserializer.save()

@@ -19,8 +19,10 @@ from api.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("incomplete/",IncompleteReminder.as_view(),name="Incomplete Reminders"),
+    path("incomplete/<int:pk>",IncompleteReminder.as_view(),name="Incomplete Reminders"),
     path("complete/",CompleteReminder.as_view(),name="Complete Reminders"),
+    path("complete/<int:pk>",CompleteReminder.as_view(),name="Complete Reminders"),
     path("post/reminder/",PostReminder.as_view(),name="Post Reminders"),
-    path("update/reminder/",UpdateReminder.as_view(),name="Update Reminders"),
-    path("delete/reminder<int:pk>",DeleteReminder.as_view(),name="Delete Reminder"),
+    path("update/reminder/<int:pk>",UpdateReminder.as_view(),name="Update Reminders"),
+    path("delete/reminder/<int:pk>",DeleteReminder.as_view(),name="Delete Reminder"),
 ]
