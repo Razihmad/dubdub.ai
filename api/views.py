@@ -12,9 +12,10 @@ class reminderAPI(APIView):
         serializer = RemindersSerializer(reminders,many=True)
         return Response(serializer.data,status=status.HTTP_200_OK)
     def post(self,request,pk=None,format=None):
-        dt = request.data.get("dataTime")
+        dt = request.data.get("dateTime")
         cur = datetime.now()
-        if(dt<=cur):
+        d = datetime.strptime(dt, "%d-%b-%Y-%H:%M:%S")
+        if(d<=cur):
             res = {"msg":"Invalid datetime, As you date time has passed already"}
             return Response(res,status=status.HTTP_400_BAD_REQUEST)
         deserializer = RemindersSerializer(data=request.data)
