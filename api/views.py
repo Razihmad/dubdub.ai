@@ -25,20 +25,17 @@ class CompleteReminder(APIView):
     def get(self,request,pk=None,format=None):
         if(pk is not None):
             if(Reminders.objects.filter(pk=pk).exists()):
-                rem = Reminders.objects.get(pk=pk,status="complete")
+                rem = Reminders.objects.get(pk=pk,status="Complete")
                 serializer = RemindersSerializer(rem)
                 return Response(serializer.data,status=status.HTTP_200_OK)
             res = {"msg":"No such data exists"}
             return Response(res,status=status.HTTP_400_BAD_REQUEST)
-        rem = Reminders.objects.all()
+        rem = Reminders.objects.filter(status="Complete")
         serializer = RemindersSerializer(rem,many=True)
         return Response(serializer.data,status=status.HTTP_200_OK)
 
 # for posting the reminders
 class PostReminder(APIView):
-    def get(self,request,pk=None,format=None):
-        res = {"msg":"This url does not support get request"}
-        return Response(res,status=status.HTTP_400_BAD_REQUEST)
     def post(self,request,format=None):
         dt = request.data.get("dateTime")
         cur = datetime.now()
@@ -55,13 +52,6 @@ class PostReminder(APIView):
 
 # to delete a particular reminder
 class DeleteReminder(APIView):
-    def get(self,request,pk=None,format=None):
-        res = {"msg":"This url does not support get request"}
-        return Response(res,status=status.HTTP_400_BAD_REQUEST)
-    def post(self,request,pk=None,format=None):
-        res = {"msg":"This url does not support post request"}
-        return Response(res,status=status.HTTP_400_BAD_REQUEST)
-
     def delete(self,request,pk=None,format=None):
         try:
             rem = Reminders.objects.get(pk=pk)
@@ -74,16 +64,7 @@ class DeleteReminder(APIView):
         
 # to update one of the reminder
 class UpdateReminder(APIView):
-    def get(self,request,pk=None,format=None):
-        res = {"msg":"This url does not support get request"}
-        return Response(res,status=status.HTTP_400_BAD_REQUEST)
-    def post(self,request,pk=None,format=None):
-        res = {"msg":"This url does not support post request"}
-        return Response(res,status=status.HTTP_400_BAD_REQUEST)
-    
-    
     def put(self,request,pk=None,format=None):
-        # id = request.data.get('id')
         if(Reminders.objects.filter(pk=pk).exists()):
             reminder = Reminders.objects.get(pk=pk)
             deserializer = RemindersSerializer(reminder,data=request.data,partial=True)
