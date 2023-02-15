@@ -8,6 +8,16 @@ This is a to do list API. where you can get post update and delete any item by u
 All these methods here are given using python requests library to access API.
 There are total 7 urls to communicate with this api.
 
+
+In Order To Run this project on your computer. Follow the given instruction given below.
+# git clone https://github.com/Razihmad/dubdub.ai.git
+# cd dubdub.ai
+# install all dependencies using pip install -r requirements.txt
+# now runserv using command python manage.py runserver
+server on your local machine has been run now.
+you can test the api as instructed below.
+
+
 /incomplete/ => This is to get all the reminders that has not been completed yet.
 /incomplete/<id>/ => In order to get any specific incomplete reminder just put the id of that in the url.
 /complete/ =>    This is to get all the reminders that has  been completed so far.
