@@ -13,7 +13,7 @@ In Order To Run this project on your computer. Follow the given instruction give
 # git clone https://github.com/Razihmad/dubdub.ai.git
 # cd dubdub.ai
 # install all dependencies using pip install -r requirements.txt
-# now runserv using command python manage.py runserver
+# now runserver using command python manage.py runserver
 server on your local machine has been run now.
 you can test the api as instructed below.
 
